@@ -13,6 +13,7 @@ namespace aayaresko\date;
 
 use kartik\date\DatePicker;
 use yii\widgets\MaskedInputAsset;
+use yii\helpers\ArrayHelper;
 
 /**
  * позволяет использовать inputmask jquery plugin совметсно с datepicker jquery plugin.
@@ -61,15 +62,14 @@ class MaskedInputDatePicker extends DatePicker
     {
         parent::init();
 
-        $this->pluginOptions = isset($this->maskedInputOptions['pluginOptions']) ? $this->maskedInputOptions['pluginOptions'] : [];
-        $this->pluginEvents = isset($this->maskedInputOptions['pluginEvents']) ? $this->maskedInputOptions['pluginEvents'] : [];
+        $this->pluginOptions = isset($this->maskedInputOptions['pluginOptions']) ? ArrayHelper::merge($this->pluginOptions, $this->maskedInputOptions['pluginOptions']) : [];
+        $this->pluginEvents  = isset($this->maskedInputOptions['pluginEvents'])  ? ArrayHelper::merge($this->pluginEvents, $this->maskedInputOptions['pluginEvents']) : [];
 
         if(isset($this->maskedInputOptions['mask'])) {
             $this->pluginOptions['mask'] = $this->maskedInputOptions['mask'];
         }
-
     }
-
+    
     /**
      * выполняет запуск widget.
      *
