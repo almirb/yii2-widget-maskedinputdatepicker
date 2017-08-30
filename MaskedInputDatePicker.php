@@ -51,7 +51,19 @@ class MaskedInputDatePicker extends DatePicker
      * Важно! события необходимо указывать без префикса 'on' (i.e 'onComplete' => 'complete')
      * @var array
      */
-    public $maskedInputOptions;
+    public $maskedInputOptions = [
+            'pluginOptions' => [
+                'alias'    => 'dd/mm/yyyy',
+                'placeholder' => '_',
+            ],
+        ];
+
+    public $pluginOptions = [
+            'format' => 'dd/mm/yyyy',
+            'todayHighlight' => true,
+            'todayBtn' => true,
+            'autoclose' => true,
+        ];
 
     /**
      * выполнит настройку параметров widget.
@@ -63,7 +75,7 @@ class MaskedInputDatePicker extends DatePicker
         parent::init();
 
         $this->pluginOptions = isset($this->maskedInputOptions['pluginOptions']) ? ArrayHelper::merge($this->pluginOptions, $this->maskedInputOptions['pluginOptions']) : [];
-        $this->pluginEvents  = isset($this->maskedInputOptions['pluginEvents'])  ? ArrayHelper::merge($this->pluginEvents, $this->maskedInputOptions['pluginEvents']) : [];
+        $this->pluginEvents  = isset($this->maskedInputOptions['pluginEvents'])  ? ArrayHelper::merge($this->pluginEvents, $this->maskedInputOptions['pluginEvents'])   : [];
 
         if(isset($this->maskedInputOptions['mask'])) {
             $this->pluginOptions['mask'] = $this->maskedInputOptions['mask'];
