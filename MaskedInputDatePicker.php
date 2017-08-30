@@ -32,7 +32,7 @@ class MaskedInputDatePicker extends DatePicker
      * включить или нет inputmask для данного поля
      * @var bool
      */
-    public $enableMaskedInput = false;
+    public $enableMaskedInput = true;
     /**
      * параметры inputmask jquery plugin
      * свойства передавать в виде вложенного массива 'pluginOptions'
