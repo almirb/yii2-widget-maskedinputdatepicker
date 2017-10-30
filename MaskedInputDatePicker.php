@@ -51,15 +51,16 @@ class MaskedInputDatePicker extends DatePicker
      * Важно! события необходимо указывать без префикса 'on' (i.e 'onComplete' => 'complete')
      * @var array
      */
+
+
     public $maskedInputOptions = [
             'pluginOptions' => [
-                'alias'    => 'dd/mm/yyyy',
+                'alias'    => 'date',
                 'placeholder' => '_',
             ],
         ];
 
     public $pluginOptions = [
-            'format' => 'dd/mm/yyyy',
             'todayHighlight' => true,
             'todayBtn' => true,
             'autoclose' => true,
@@ -110,5 +111,15 @@ class MaskedInputDatePicker extends DatePicker
             $element2 = "jQuery('#" . $this->options2['id'] . "')";
             $this->registerPlugin('inputmask', $element2);
         }
+
+        $id = $this->options['id'];
+
+        // Para funcionar com o DateControl
+        $js = "jQuery('#{$id}-kvdate').on('complete', function(){
+            $('#{$id}').trigger('change');
+        });";
+
+        $this->getView()->registerJs($js);
+
     }
 }
